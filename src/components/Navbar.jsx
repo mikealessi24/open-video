@@ -14,6 +14,9 @@ const Navbar = () => {
   const [searchVal, setSearchVal] = useState("")
 
   const handleChange = (e) => {
+    if (e.target.value === "") {
+      // clear search auto request
+    }
     setSearchVal(e.target.value)
   }
 

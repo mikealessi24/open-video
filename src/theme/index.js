@@ -102,7 +102,17 @@ export const theme = createTheme({
             },
           },
         },
-        notchedOutline: {},
+      },
+    },
+    MuiCard: {
+      styleOverrides: {
+        root: ({ theme }) => ({
+          width: 340,
+          height: 220,
+          position: "relative",
+          marginTop: theme.spacing(3),
+          marginRight: theme.spacing(3),
+        }),
       },
     },
   },
