@@ -1,7 +1,7 @@
 import { createTheme } from "@mui/material/styles"
 
 const spacing = (factor) => factor * 8
-export const dark = createTheme({
+export const theme = createTheme({
   spacing,
   palette: {
     primary: {
