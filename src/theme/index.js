@@ -9,18 +9,13 @@ export const theme = createTheme({
       background: "#102131", // darker bluish tint
     },
     secondary: {
-      main: "#63ECBC", //green
-    },
-    tertiary: {
-      main: "#b8afff", //purple
-    },
-    text: {
-      main: "#fff",
+      main: "#63ECBC", // green
+      accent: "#E5E5E5", // silver
     },
   },
   typography: {
     // Main Font
-    fontFamily: "'Inconsolata', monospace;",
+    fontFamily: "'Roboto Mono', monospace;",
     h1: {
       fontSize: "1.25rem", // 20px
       fontWeight: 700, // bold
@@ -74,7 +69,7 @@ export const theme = createTheme({
       color: "#fff",
     },
     caption: {
-      fontSize: "0.75rem", // 12px
+      fontSize: "0.7625rem", // 10px
       color: "#fff",
     },
   },
@@ -88,13 +83,26 @@ export const theme = createTheme({
     },
   },
   components: {
-    MuiTab: {
+    MuiOutlinedInput: {
       styleOverrides: {
         root: {
-          color: "#fff",
-          textTransform: "unset",
-          // width: 130,
+          fontFamily: "'Roboto Mono', monospace;",
+          fontWeight: 500,
+          fontSize: "0.875rem",
+          backgroundColor: "#E5E5E5",
+          "&.Mui-focused": {
+            "& .MuiOutlinedInput-notchedOutline": {
+              borderColor: "#63ECBC",
+              borderWidth: 2,
+            },
+          },
+          "&:hover": {
+            "& .MuiOutlinedInput-notchedOutline": {
+              borderColor: "#63ECBC",
+            },
+          },
         },
+        notchedOutline: {},
       },
     },
   },
