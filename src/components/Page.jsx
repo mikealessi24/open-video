@@ -5,7 +5,7 @@ const Page = ({ children }) => {
     <Box
       height="100vh"
       width="100vw"
-      sx={{ backgroundColor: "primary.background" }}
+      sx={{ backgroundColor: "primary.background", overflowY: "hidden" }}
     >
       {children}
     </Box>

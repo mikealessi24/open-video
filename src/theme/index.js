@@ -107,8 +107,8 @@ export const theme = createTheme({
     MuiCard: {
       styleOverrides: {
         root: ({ theme }) => ({
-          width: 340,
-          height: 220,
+          width: 200,
+          height: 360,
           position: "relative",
           marginTop: theme.spacing(3),
           marginRight: theme.spacing(3),

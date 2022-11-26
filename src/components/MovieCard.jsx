@@ -5,7 +5,7 @@ const ImageOverlay = () => {
     <Box
       sx={{
         background:
-          "transparent linear-gradient(180deg, #00000093 0%, #03030300 100%) 0% 0% no-repeat padding-box;",
+          "transparent linear-gradient(180deg, #00000050 0%, #03030300 100%) 0% 0% no-repeat padding-box;",
         height: "100%",
         p: 1,
       }}
@@ -22,7 +22,8 @@ const ImageOverlay = () => {
   )
 }
 
-const MovieCard = () => {
+const MovieCard = ({ movie }) => {
+  console.log(movie)
   return (
     <Grow in>
       <Card
@@ -37,8 +38,8 @@ const MovieCard = () => {
         onMouseLeave={() => console.log("off?")}
       >
         <CardMedia
-          image="https://m.media-amazon.com/images/I/A1UTpJzoPBL._RI_.jpg"
-          sx={{ aspectRatio: "16/9", height: "100%" }}
+          image={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
+          sx={{ height: "100%" }}
         >
           <ImageOverlay />
         </CardMedia>

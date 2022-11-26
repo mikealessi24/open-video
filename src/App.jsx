@@ -7,7 +7,12 @@ const App = () => {
   return (
     <Page>
       <Navbar />
-      <Container maxWidth="xl">
+      <Container
+        maxWidth="xl"
+        sx={{
+          height: "calc(100% - 64px)",
+        }}
+      >
         <MovieList />
       </Container>
     </Page>
