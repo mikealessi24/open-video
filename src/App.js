@@ -1,5 +1,11 @@
+import { Box, Typography } from "@mui/material"
+
 const App = () => {
-  return <div></div>
+  return (
+    <Box>
+      <Typography color="primary">Is there a theme?</Typography>
+    </Box>
+  )
 }
 
 export default App
