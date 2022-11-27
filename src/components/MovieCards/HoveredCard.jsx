@@ -9,7 +9,8 @@ import {
   Tooltip,
   Typography,
 } from "@mui/material"
-import { Add, CheckCircleRounded } from "@mui/icons-material"
+
+import { StarOutline, Star } from "@mui/icons-material"
 import { useContext } from "react"
 import { AppContext } from "../../contexts/AppContext"
 import Score from "./Score"
@@ -85,7 +86,7 @@ const HoveredCard = ({ setFocusedMovieId, movie }) => {
                 color="secondary"
                 onClick={addtoList}
               >
-                <Add />
+                <StarOutline />
               </IconButton>
             </Tooltip>
           )}
@@ -97,7 +98,7 @@ const HoveredCard = ({ setFocusedMovieId, movie }) => {
                 size="small"
                 onClick={removeFromList}
               >
-                <CheckCircleRounded />
+                <Star />
               </IconButton>
             </Tooltip>
           )}
