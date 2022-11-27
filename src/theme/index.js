@@ -115,5 +115,12 @@ export const theme = createTheme({
         }),
       },
     },
+    MuiLinearProgress: {
+      styleOverrides: {
+        root: {
+          backgroundColor: "#63ECBC",
+        },
+      },
+    },
   },
 })

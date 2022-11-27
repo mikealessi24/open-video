@@ -8,14 +8,16 @@ import {
   Toolbar,
 } from "@mui/material"
 import { Search } from "@mui/icons-material"
-import { useState } from "react"
+import { useContext, useState } from "react"
+import { AppContext } from "../contexts/AppContext"
 
 const Navbar = () => {
+  const { setActiveSearch } = useContext(AppContext)
   const [searchVal, setSearchVal] = useState("")
 
   const handleChange = (e) => {
     if (e.target.value === "") {
-      // clear search auto request
+      setActiveSearch("")
     }
     setSearchVal(e.target.value)
   }
@@ -27,8 +29,7 @@ const Navbar = () => {
   }
 
   const handleSearch = () => {
-    // promise
-    console.log(searchVal)
+    setActiveSearch(searchVal)
   }
 
   return (

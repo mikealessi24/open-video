@@ -1,25 +1,26 @@
 import { Box, CircularProgress, Typography } from "@mui/material"
-import { Fragment, useEffect } from "react"
-import useMovies from "../hooks/useMovies"
+import { Fragment, useContext, useEffect } from "react"
+
 import { useInView } from "react-intersection-observer"
 
 import MovieCard from "./MovieCard"
 
+import { AppContext } from "../contexts/AppContext"
+
 const MovieList = () => {
   const { ref, inView } = useInView()
-
-  const { data, isLoading, isFetchingNextPage, hasNextPage, fetchNextPage } =
-    useMovies()
+  const { movies } = useContext(AppContext)
 
   useEffect(() => {
     if (inView) {
-      fetchNextPage()
+      movies.fetchNextPage()
     }
-  }, [inView, fetchNextPage])
+    /* eslint-disable-next-line */
+  }, [inView])
 
   return (
     <Box sx={{ height: "100%", overflowY: "scroll" }}>
-      {data?.pages.map((page, i) => (
+      {movies.data?.pages.map((page, i) => (
         <Box key={i} sx={{ display: "flex", flexWrap: "wrap" }}>
           {page.results.map((movie) => (
             <Fragment key={movie.id}>
@@ -28,7 +29,7 @@ const MovieList = () => {
           ))}
         </Box>
       ))}
-      {!isLoading && (
+      {!movies.isLoading && (
         <Box
           ref={ref}
           sx={{
@@ -38,12 +39,12 @@ const MovieList = () => {
             my: 2,
           }}
         >
-          {!isFetchingNextPage && hasNextPage && (
+          {!movies.isFetchingNextPage && movies.hasNextPage && (
             <Typography variant="caption" sx={{ mr: 2 }}>
               Loading More
             </Typography>
           )}
-          {isFetchingNextPage && (
+          {movies.isFetchingNextPage && (
             <CircularProgress color="secondary" size={20} />
           )}
         </Box>

@@ -1,20 +1,21 @@
 import { useInfiniteQuery } from "react-query"
 import { api } from "../api/instance"
 
-const getPopularMovies = (pageParam) =>
+const getMoviesbySearch = (pageParam, searchVal) =>
   api
     .request({
-      url: "/movie/popular",
+      url: "/search/movie",
       params: {
         page: pageParam,
+        query: searchVal,
       },
     })
     .then((res) => res.data)
 
-const useMovies = () => {
+const useSearchedMovies = (searchVal) => {
   return useInfiniteQuery(
-    ["Movies"],
-    ({ pageParam = 1 }) => getPopularMovies(pageParam),
+    ["MoviesWithSearch", searchVal],
+    ({ pageParam = 1 }) => getMoviesbySearch(pageParam, searchVal),
     {
       getNextPageParam: (page) => {
         if (page.page < page.total_pages) {
@@ -23,6 +24,7 @@ const useMovies = () => {
           return undefined
         }
       },
+      enabled: Boolean(searchVal),
       onError: (err) => {
         console.error(err)
       },
@@ -30,4 +32,4 @@ const useMovies = () => {
   )
 }
 
-export default useMovies
+export default useSearchedMovies
