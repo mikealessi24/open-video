@@ -69,6 +69,7 @@ export const theme = createTheme({
       color: "#fff",
     },
     caption: {
+      fontFamily: "'Open Sans', sans-serif",
       fontSize: "0.7625rem", // 10px
       color: "#fff",
     },
@@ -109,9 +110,7 @@ export const theme = createTheme({
         root: ({ theme }) => ({
           width: 200,
           height: 360,
-          position: "relative",
-          marginTop: theme.spacing(3),
-          marginRight: theme.spacing(3),
+          margin: theme.spacing(1.5),
         }),
       },
     },
@@ -119,6 +118,13 @@ export const theme = createTheme({
       styleOverrides: {
         root: {
           backgroundColor: "#63ECBC",
+        },
+      },
+    },
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          textTransform: "none",
         },
       },
     },

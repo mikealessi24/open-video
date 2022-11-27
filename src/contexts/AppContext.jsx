@@ -6,6 +6,7 @@ export const AppContext = createContext()
 
 export const AppProvider = ({ children }) => {
   const [activeSearch, setActiveSearch] = useState("")
+  const [myList, setMylist] = useState([])
   const popularMovies = useMovies()
   const searchedMovies = useSearchedMovies(activeSearch)
   const movies = activeSearch ? searchedMovies : popularMovies
@@ -18,6 +19,8 @@ export const AppProvider = ({ children }) => {
         searchedMovies,
         activeSearch,
         setActiveSearch,
+        myList,
+        setMylist,
       }}
     >
       {children}

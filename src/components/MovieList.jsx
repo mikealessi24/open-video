@@ -1,14 +1,15 @@
 import { Box, CircularProgress, Typography } from "@mui/material"
-import { Fragment, useContext, useEffect } from "react"
+import { Fragment, useContext, useEffect, useState } from "react"
 
 import { useInView } from "react-intersection-observer"
 
-import MovieCard from "./MovieCard"
+import MovieCard from "./Cards/MovieCard"
 
 import { AppContext } from "../contexts/AppContext"
 
 const MovieList = () => {
   const { ref, inView } = useInView()
+  const [focusedMovieId, setFocusedMovieId] = useState(null)
   const { movies } = useContext(AppContext)
 
   useEffect(() => {
@@ -19,15 +20,26 @@ const MovieList = () => {
   }, [inView])
 
   return (
-    <Box sx={{ height: "100%", overflowY: "scroll" }}>
+    <Box
+      sx={{
+        height: "100%",
+        overflowY: "scroll",
+        display: "flex",
+        flexWrap: "wrap",
+      }}
+    >
       {movies.data?.pages.map((page, i) => (
-        <Box key={i} sx={{ display: "flex", flexWrap: "wrap" }}>
+        <Fragment key={i}>
           {page.results.map((movie) => (
             <Fragment key={movie.id}>
-              <MovieCard movie={movie} />
+              <MovieCard
+                movie={movie}
+                focusedMovieId={focusedMovieId}
+                setFocusedMovieId={setFocusedMovieId}
+              />
             </Fragment>
           ))}
-        </Box>
+        </Fragment>
       ))}
       {!movies.isLoading && (
         <Box
