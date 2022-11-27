@@ -3,7 +3,7 @@ import { Fragment, useContext, useEffect, useState } from "react"
 
 import { useInView } from "react-intersection-observer"
 
-import MovieCard from "./Cards/MovieCard"
+import MovieCard from "./MovieCards/MovieCard"
 
 import { AppContext } from "../contexts/AppContext"
 
@@ -26,6 +26,7 @@ const MovieList = () => {
         overflowY: "scroll",
         display: "flex",
         flexWrap: "wrap",
+        px: 12,
       }}
     >
       {movies.data?.pages.map((page, i) => (

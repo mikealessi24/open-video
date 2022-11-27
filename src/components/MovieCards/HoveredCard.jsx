@@ -1,18 +1,35 @@
 import {
   Box,
-  Button,
   Card,
   CardActions,
   CardContent,
   CardMedia,
   Grow,
+  IconButton,
+  Tooltip,
   Typography,
 } from "@mui/material"
-import { Add, Check } from "@mui/icons-material"
+import { Add, CheckCircleRounded } from "@mui/icons-material"
+import { useContext } from "react"
+import { AppContext } from "../../contexts/AppContext"
+import Score from "./Score"
 
 const HoveredCard = ({ setFocusedMovieId, movie }) => {
+  const { myList, setMyList } = useContext(AppContext)
+
+  const isAddedToList = Boolean(myList.find((x) => x.id === movie.id))
+
   const handleResetFocus = () => {
     setFocusedMovieId(null)
+  }
+
+  const addtoList = () => {
+    setMyList([...myList, { ...movie }])
+  }
+
+  const removeFromList = () => {
+    const filtered = myList.filter((x) => x.id !== movie.id)
+    setMyList(filtered)
   }
 
   return (
@@ -21,7 +38,7 @@ const HoveredCard = ({ setFocusedMovieId, movie }) => {
         onMouseLeave={handleResetFocus}
         sx={{
           width: 350,
-          height: 500,
+          height: 475,
           borderRadius: 2,
           border: "4px solid #63ECBC",
           position: "absolute",
@@ -41,7 +58,7 @@ const HoveredCard = ({ setFocusedMovieId, movie }) => {
             },
           }}
         />
-        <CardContent sx={{ height: "50%" }}>
+        <CardContent sx={{ height: 220 }}>
           <Typography
             variant="h4"
             gutterBottom
@@ -58,23 +75,32 @@ const HoveredCard = ({ setFocusedMovieId, movie }) => {
             <Typography variant="caption">{movie.overview}</Typography>
           </Box>
         </CardContent>
-        <CardActions sx={{ justifyContent: "flex-end" }}>
-          {/* <Button
+        <CardActions sx={{ justifyContent: "space-between" }}>
+          <Score value={movie.vote_average * 10} />
+          {!isAddedToList && (
+            <Tooltip title="Add to my list" placement="top">
+              <IconButton
                 variant="outlined"
-                color="primary"
                 size="small"
-                endIcon={<Add />}
+                color="secondary"
+                onClick={addtoList}
               >
-                Add to my list
-              </Button> */}
-          <Button
-            variant="outlined"
-            color="secondary"
-            size="small"
-            endIcon={<Check />}
-          >
-            Remove from my list
-          </Button>
+                <Add />
+              </IconButton>
+            </Tooltip>
+          )}
+          {isAddedToList && (
+            <Tooltip title="Remove from my list" placement="top">
+              <IconButton
+                variant="contained"
+                color="secondary"
+                size="small"
+                onClick={removeFromList}
+              >
+                <CheckCircleRounded />
+              </IconButton>
+            </Tooltip>
+          )}
         </CardActions>
       </Card>
     </Grow>

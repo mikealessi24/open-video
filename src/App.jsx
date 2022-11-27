@@ -1,7 +1,8 @@
-import { Container, LinearProgress } from "@mui/material"
+import { Box, LinearProgress } from "@mui/material"
 import { useContext } from "react"
 
 import MovieList from "./components/MovieList"
+import MyList from "./components/MyList"
 import Navbar from "./components/Navbar"
 import Page from "./components/Page"
 import { AppContext } from "./contexts/AppContext"
@@ -12,14 +13,14 @@ const App = () => {
     <Page>
       <Navbar />
       {searchedMovies.isLoading && <LinearProgress />}
-      <Container
-        maxWidth="xl"
+      <Box
         sx={{
           height: "calc(100% - 64px)",
         }}
       >
+        <MyList />
         <MovieList />
-      </Container>
+      </Box>
     </Page>
   )
 }
