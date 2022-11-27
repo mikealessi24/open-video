@@ -23,7 +23,6 @@ const ImageOverlay = () => {
 }
 
 const MovieCard = ({ movie }) => {
-  console.log(movie)
   return (
     <Grow in>
       <Card
